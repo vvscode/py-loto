@@ -5,7 +5,7 @@ import time
 
 from game import Game
 from player import Player
-from player_view import print_player
+from printer import Printer
 
 def clear_console(): 
   system('cls' if name == 'nt' else 'clear')
@@ -16,6 +16,7 @@ game = Game()
 names = ['Bob', 'Sam', 'Martin', 'Anna', 'Clar']
 number_of_players = random.randint(1, len(names))
 players = []
+printer = Printer()
 for i in range(number_of_players):
   player_name = names[i % len(names)]
   number_of_cards = random.randint(1, 2)
@@ -38,7 +39,7 @@ while not bool(get_winner()) and not game.is_finished():
   step_index += 1
   for player in players:
     player.step(step_number)
-    print_player(player)
+    printer.print_player(player)
 
 winner = get_winner()
 if winner is not None:
