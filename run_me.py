@@ -14,7 +14,7 @@ def clear_console():
 game = Game()
 
 names = ['Bob', 'Sam', 'Martin', 'Anna', 'Clar']
-number_of_players = random.randint(1, len(names))
+number_of_players = random.randint(1, 2)
 players = []
 printer = Printer()
 for i in range(number_of_players):
@@ -32,7 +32,7 @@ def get_winner():
 print('Game start')
 step_index = 1
 while not bool(get_winner()) and not game.is_finished():
-  # time.sleep(1)
+  time.sleep(0.5)
   clear_console()
   step_number = game.get_next_number()
   print(f'Step #{step_index}: {step_number}')
