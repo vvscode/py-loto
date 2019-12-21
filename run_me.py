@@ -21,26 +21,30 @@ for i in range(number_of_players):
   player_name = names[i % len(names)]
   number_of_cards = random.randint(1, 2)
   player = Player(player_name)
+
   for j in range(number_of_cards):
     player.add_card(game.get_card_numbers())
-  players.append(player)
 
-# Game loop
-def get_winner():
-  return next(filter(lambda player: player.is_winner(), players), None)
+  game.add_player(player)
 
+def get_game_step_printer():
+  step_index = 1
+  def print_game_step(step_number):
+    nonlocal step_index
+    time.sleep(0.5)
+    clear_console()
+    step_number = game.get_next_number()
+    print(f'Step #{step_index}: {step_number}')
+    step_index = step_index + 1
+    for player in game.players:
+      printer.print_player(player)
+
+  return print_game_step
+
+game.set_on_game_step(get_game_step_printer())
 print('Game start')
-step_index = 1
-while not bool(get_winner()) and not game.is_finished():
-  time.sleep(0.5)
-  clear_console()
-  step_number = game.get_next_number()
-  print(f'Step #{step_index}: {step_number}')
-  step_index += 1
-  for player in players:
-    player.step(step_number)
-    printer.print_player(player)
+game.start()
 
-winner = get_winner()
+winner = game.get_winner()
 if winner is not None:
   print(f'Player "{winner.name}" won on step #{step_index}')
