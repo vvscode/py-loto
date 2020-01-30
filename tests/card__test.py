@@ -1,4 +1,4 @@
-from py_loto.card import Card
+from ..py_loto.card import Card
 
 
 def test_instantiating():
