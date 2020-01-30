@@ -2,8 +2,8 @@ import inspect
 import pathlib
 import unittest.mock as mock
 
-from .py_loto.printer import Printer
-from .py_loto.player import Player
+from py_loto.printer import Printer
+from py_loto.player import Player
 
 dir = pathlib.Path(__file__).parent.absolute()
 

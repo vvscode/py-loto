@@ -1,5 +1,5 @@
-from ..py_loto.game import Game
-from ..py_loto.player import Player
+from py_loto.game import Game
+from py_loto.player import Player
 
 
 def test_is_finished():
